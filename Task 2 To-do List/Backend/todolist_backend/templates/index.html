@@ -25,38 +25,23 @@
         <div id="liste">
             <div class="titre">
                 <h2>Liste des tâches</h2>
-                <button type="button" id="btnajouter">Nouvelle tâche</button>
             </div>
-            <div class="table">
-                <table>
-                    <thead>
-                        <th>#</th>
-                        <th>Libellé</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tâche 1</td>
-                            <td>Tâche 1</td>
-                            <td><i class="fa-solid fa-trash"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Tâche 1</td>
-                            <td>Tâche 1</td>
-                            <td>Tâche 1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Tâche 1</td>
-                            <td>Tâche 1</td>
-                            <td>Tâche 1</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+           <div class="table">
+               <button type="button" id="btnajouter">Nouvelle tâche</button>
+               {% for task in tasks %}
+    <div class="task {% if task['etat'] == 'finished' %}finished{% endif %}">
+        <div class="left">
+            <strong>{{ task['titre'] }}</strong><br>
+            <span>{{ task['description'] }}</span><br>
+            <small>{{ task['dateDebut'] }}</small>
+        </div>
+        <div class="right">
+            <input type="checkbox" value="{{ task['id'] }}"
+                   {% if task['etat'] == 'finished' %}disabled{% endif %}>
+        </div>
+    </div>
+{% endfor %}
+           </div>
         </div>
     </div>
     <div class="footer">
